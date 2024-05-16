@@ -5,6 +5,7 @@ Before running the project, follow these steps:
 1. **Prequisites:**
     ```bash
     Docker
+    MySQL
     ```
 2. **Clone the Repository:**
     ```bash
@@ -14,6 +15,8 @@ Before running the project, follow these steps:
     ```bash
     cd Wobot-AI-Todo
     pip install -r requirements.txt
+    Change the variables of MySQL present in env according to your setup
+    Change the host present in env file to localhost
     bash start.sh
     ```
 4. **If you are having Docker then follow these steps:**
@@ -30,7 +33,7 @@ Before running the project, follow these steps:
 
 ## **Introduction:**
 
-Wobot-AI-Todo utilized FastAPI and MySQL for Backend Services.
+Wobot-AI-Todo utilizes FastAPI and MySQL for Backend Services.
 
 ```bash
 1. Title - Mandatory
@@ -71,7 +74,7 @@ Authentication Oriented RESTAPI
 
 3) **Create Todo**
     - `/todos` (POST):
-      - Todos are created
+      - Todos are created for the User
       ```bash
       http://127.0.0.1:8000/todos
 
@@ -87,7 +90,8 @@ Authentication Oriented RESTAPI
       {
         "message": "Todo Added Successfully!"
       }
-      ``
+      ```
+
 4) **Get All Todo**
     - `/todos` (GET):
     - List all Todos of the User
@@ -109,7 +113,7 @@ Authentication Oriented RESTAPI
     ```
 5) **Get a particular Todo**
     - `/todos/{id}` (GET)
-    - List information about a particular todo of the user
+    - List information about a particular Todo of the User
 
     ```bash
     http://127.0.0.1:8000/todos/1
@@ -147,7 +151,7 @@ Authentication Oriented RESTAPI
 
 7) **Delete a Todo**
     - `/todos/{id}` (DELETE)
-    - Deletes a Todo of the User
+    - Deletes a particular Todo of the User
 
     ```bash
     https:127.0.0.1:8000/1

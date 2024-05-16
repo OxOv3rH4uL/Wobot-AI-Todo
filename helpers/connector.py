@@ -4,27 +4,30 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def get_connection():
+    """
+    To get connection to MYSQL
+    """
     connection = db.connect(
-        host='mysql',
-        username='root',
-        password='root',
+        host=os.getenv("DB_HOST"),
+        username=os.getenv("DB_USERNAME"),
+        password=os.getenv("DB_PASSWORD"),
         database='wobotai',
         port=3306
     )
     return connection
 
 def database_setup():
+    """
+    Initial setup of Database
+    """
     try:
         connection = db.connect(
-        host='mysql',
-        username='root',
-        password='root',
+        host=os.getenv("DB_HOST"),
+        username=os.getenv("DB_USERNAME"),
+        password=os.getenv("DB_PASSWORD"),
         port=3306
         )
         cursor = connection.cursor(dictionary=True)
-        # cursor.execute("show databases like 'wobotai'")
-        # res = cursor.fetchone()
-        # if res is None:
         cursor.execute("create database if not exists wobotai")
         cursor.execute("use wobotai")
         cursor.execute("create table if not exists users(id int primary key auto_increment,username varchar(255) not null,password varchar(255) not null)")

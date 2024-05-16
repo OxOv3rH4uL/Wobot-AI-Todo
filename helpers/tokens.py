@@ -9,6 +9,9 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 
 def create_access_token(data: dict,expires_delta=timedelta):
+    """
+    To create access token for authorization
+    """
     to_encode = data.copy()
     expire = datetime.now() + expires_delta
     to_encode.update({"exp": expire})
@@ -17,6 +20,9 @@ def create_access_token(data: dict,expires_delta=timedelta):
 
 
 def verify_token(token: str, credentials_exception):
+    """
+    Verifies the token
+    """
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")

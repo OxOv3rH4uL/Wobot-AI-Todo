@@ -30,6 +30,9 @@ async def home():
 
 @app.post('/signup')
 async def signup(user: User):
+    """
+    User Registration
+    """
     conn = database.get_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute('SELECT id FROM users WHERE username = %s', (user.username,))
@@ -52,6 +55,9 @@ async def signup(user: User):
 
 @app.post("/login")
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    """
+    User Authorization
+    """
     user = authenticate_user(form_data.username, form_data.password)
     if not user:
         raise HTTPException(
@@ -68,6 +74,9 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
 
 @app.get("/todos")
 async def get_all_todos(current_user: TokenData = Depends(get_current_user)):
+    """
+    Lists all the Todos of the User
+    """
     conn = database.get_connection()
     cursor = conn.cursor(dictionary=True)
     try:
@@ -85,6 +94,9 @@ async def get_all_todos(current_user: TokenData = Depends(get_current_user)):
 
 @app.get("/todos/{id}")
 async def get_a_todo(id:int , current_user:TokenData = Depends(get_current_user)):
+    """
+    Get the details of particular Todo of the User
+    """
     conn = database.get_connection()
     cursor = conn.cursor(dictionary=True)
     try:
@@ -104,6 +116,9 @@ async def get_a_todo(id:int , current_user:TokenData = Depends(get_current_user)
 
 @app.post("/todos")
 async def create_todo(request:Todo,current_user: TokenData=Depends(get_current_user)):
+    """
+    Creates Todo for the User
+    """
     conn = database.get_connection()
     cursor = conn.cursor(dictionary=True)
     try:
@@ -123,6 +138,9 @@ async def create_todo(request:Todo,current_user: TokenData=Depends(get_current_u
 
 @app.patch("/todos/{id}")
 async def update_todo(id:int,request:Todo,current_user:TokenData=Depends(get_current_user)):
+    """
+    Updates the details of particular Todo of the User
+    """
     conn = database.get_connection()
     cursor = conn.cursor(dictionary=True)
     try:
@@ -148,6 +166,9 @@ async def update_todo(id:int,request:Todo,current_user:TokenData=Depends(get_cur
 
 @app.delete("/todos/{id}")
 async def delete_todo(id:int,current_user:TokenData=Depends(get_current_user)):
+    """
+    Deletes a particular Todo of the User
+    """
     conn = database.get_connection()
     cursor = conn.cursor(dictionary=True)
     try:
