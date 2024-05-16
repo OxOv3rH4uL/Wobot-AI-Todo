@@ -18,4 +18,3 @@ while True:
 END
 echo "MySQL is up and running. Starting the FastAPI application..."
 uvicorn main:app --reload --port=8000 --host=0.0.0.0
-

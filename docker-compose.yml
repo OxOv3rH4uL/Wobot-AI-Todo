@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      image: wobot-todo
     container_name: wobot-backend
     ports:
       - "8000:8000"
